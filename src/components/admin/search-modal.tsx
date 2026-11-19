@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { createServerClient } from "@/lib/supabase-server";
+import { createClient } from "@/lib/supabase-client";
 import { X, Search, Package, ShoppingCart, Users, DollarSign, Tag, FileText, Globe, BarChart3, Settings, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -24,7 +24,7 @@ export function SearchModal() {
     }
     setLoading(true);
     const timer = setTimeout(async () => {
-      const supabase = await createServerClient();
+      const supabase = createClient();
       const [products, orders, customers] = await Promise.all([
         supabase.from("products").select("name").eq("is_active", true).ilike("name", `%${query}%`).limit(5),
         supabase.from("orders").select("order_number, customer_name").ilike("order_number", `%${query}%`).limit(5),

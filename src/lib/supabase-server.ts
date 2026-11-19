@@ -1,4 +1,4 @@
-import { createServerClient as createSupabaseServerClient, type CookieOptions } from "@supabase/ssr";
+﻿import { createServerClient as createSupabaseServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 export async function createServerClient() {
@@ -12,18 +12,10 @@ export async function createServerClient() {
           return cookieStore.get(name)?.value;
         },
         set(name: string, value: string, options: CookieOptions) {
-          try {
-            cookieStore.set({ name, value, ...options });
-          } catch {
-            // The `set` method is called from a Server Component, which is fine.
-          }
+          try { cookieStore.set({ name, value, ...options }); } catch {}
         },
         remove(name: string, options: CookieOptions) {
-          try {
-            cookieStore.set({ name, value: "", ...options });
-          } catch {
-            // The `remove` method is called from a Server Component, which is fine.
-          }
+          try { cookieStore.set({ name, value: "", ...options }); } catch {}
         },
       },
     },

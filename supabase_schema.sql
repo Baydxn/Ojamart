@@ -108,15 +108,15 @@ create table public.wishlist (
   unique(user_id, product_id)
 );
 
-create index idx_products_category on public.products(category_id);
-create index idx_products_active on public.products(is_active);
-create index idx_products_featured on public.products(is_featured);
-create index idx_products_flash on public.products(is_flash_deal);
-create index idx_cart_items_user on public.cart_items(user_id);
-create index idx_orders_user on public.orders(user_id);
-create index idx_order_items_order on public.order_items(order_id);
-create index idx_addresses_user on public.addresses(user_id);
-create index idx_wishlist_user on public.wishlist(user_id);
+create index if not exists idx_products_category on public.products(category_id);
+create index if not exists idx_products_active on public.products(is_active);
+create index if not exists idx_products_featured on public.products(is_featured);
+create index if not exists idx_products_flash on public.products(is_flash_deal);
+create index if not exists idx_cart_items_user on public.cart_items(user_id);
+create index if not exists idx_orders_user on public.orders(user_id);
+create index if not exists idx_order_items_order on public.order_items(order_id);
+create index if not exists idx_addresses_user on public.addresses(user_id);
+create index if not exists idx_wishlist_user on public.wishlist(user_id);
 
 -- Row Level Security
 alter table public.profiles enable row level security;
@@ -435,33 +435,33 @@ create table public.analytics_events (
 -- INDEXES
 -- ============================================
 
-create index idx_products_category on public.products(category_id);
-create index idx_products_active on public.products(is_active);
-create index idx_products_slug on public.products(slug);
-create index idx_orders_user on public.orders(user_id);
-create index idx_orders_status on public.orders(status);
-create index idx_order_items_order on public.order_items(order_id);
-create index idx_addresses_user on public.addresses(user_id);
-create index idx_wishlist_user on public.wishlist(user_id);
+create index if not exists idx_products_category on public.products(category_id);
+create index if not exists idx_products_active on public.products(is_active);
+create index if not exists idx_products_slug on public.products(slug);
+create index if not exists idx_orders_user on public.orders(user_id);
+create index if not exists idx_orders_status on public.orders(status);
+create index if not exists idx_order_items_order on public.order_items(order_id);
+create index if not exists idx_addresses_user on public.addresses(user_id);
+create index if not exists idx_wishlist_user on public.wishlist(user_id);
 
-create index idx_draft_orders_status on public.draft_orders(status);
-create index idx_draft_orders_customer on public.draft_orders(customer_id);
+create index if not exists idx_draft_orders_status on public.draft_orders(status);
+create index if not exists idx_draft_orders_customer on public.draft_orders(customer_id);
 
-create index idx_discounts_code on public.discounts(code);
-create index idx_discounts_active on public.discounts(is_active);
+create index if not exists idx_discounts_code on public.discounts(code);
+create index if not exists idx_discounts_active on public.discounts(is_active);
 
-create index idx_blog_posts_slug on public.blog_posts(slug);
-create index idx_blog_posts_status on public.blog_posts(status);
+create index if not exists idx_blog_posts_slug on public.blog_posts(slug);
+create index if not exists idx_blog_posts_status on public.blog_posts(status);
 
-create index idx_markets_code on public.markets(code);
+create index if not exists idx_markets_code on public.markets(code);
 
-create index idx_menu_items_menu on public.menu_items(menu_id);
+create index if not exists idx_menu_items_menu on public.menu_items(menu_id);
 
-create index idx_inventory_logs_product on public.inventory_logs(product_id);
-create index idx_inventory_logs_created on public.inventory_logs(created_at);
+create index if not exists idx_inventory_logs_product on public.inventory_logs(product_id);
+create index if not exists idx_inventory_logs_created on public.inventory_logs(created_at);
 
-create index idx_analytics_events_name on public.analytics_events(event_name);
-create index idx_analytics_events_created on public.analytics_events(created_at);
+create index if not exists idx_analytics_events_name on public.analytics_events(event_name);
+create index if not exists idx_analytics_events_created on public.analytics_events(created_at);
 
 -- ============================================
 -- ROW LEVEL SECURITY

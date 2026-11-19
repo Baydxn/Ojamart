@@ -1,4 +1,8 @@
-import { createServerClient } from "@/lib/supabase-server";
+"use client";
+
+import { createClient } from "@/lib/supabase-client";
+
+export default function SettingsPage() {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,7 +36,7 @@ export default function SettingsPage() {
                 e.preventDefault();
                 setLoading(true);
                 try {
-                  const supabase = await createServerClient();
+                  const supabase = createClient();
                   await supabase.from("store_settings").upsert(formData);
                   toast({ title: "Saved", description: "Store settings updated successfully." });
                 } catch (err: any) {
