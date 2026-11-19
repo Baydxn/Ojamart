@@ -1,0 +1,93 @@
+
+> ojamart@1.0.0 build
+> next build
+
+▲ Next.js 16.4.6 (Turbopack)
+✓ Running next.config.ts took 2.3s
+- Cache Components enabled
+- Partial Prefetching enabled
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 65s
+  Running TypeScript ...
+src/app/checkout/page.tsx(230,15): error TS2322: Type '{ children: string; onClick: (e: FormEvent<Element>) => Promise<void>; disabled: boolean; className: string; loading: boolean; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<HTMLButtonElement>'.
+  Property 'loading' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<HTMLButtonElement>'.
+src/app/login/page.tsx(75,15): error TS2322: Type '{ type: "email"; placeholder: string; value: string; onChange: (e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => void; leftIcon: Element; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<HTMLInputElement>'.
+  Property 'leftIcon' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<HTMLInputElement>'.
+src/app/login/page.tsx(88,15): error TS2322: Type '{ type: "password"; placeholder: string; value: string; onChange: (e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => void; leftIcon: Element; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<HTMLInputElement>'.
+  Property 'leftIcon' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<HTMLInputElement>'.
+src/app/login/page.tsx(91,33): error TS2322: Type '{ children: string; type: "submit"; loading: boolean; className: string; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<HTMLButtonElement>'.
+  Property 'loading' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<HTMLButtonElement>'.
+src/app/orders/page.tsx(12,3): error TS2741: Property '$$typeof' is missing in type '() => Element' but required in type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>'.
+src/app/orders/page.tsx(17,32): error TS2304: Cannot find name 'Truck'.
+src/app/product/[slug]/page.tsx(110,8): error TS2304: Cannot find name 'Link'.
+src/app/product/[slug]/page.tsx(110,101): error TS2304: Cannot find name 'Link'.
+src/app/product/[slug]/page.tsx(114,13): error TS2607: JSX element class does not support attributes because it does not have a 'props' property.
+src/app/product/[slug]/page.tsx(114,14): error TS2786: 'Image' cannot be used as a JSX component.
+  Its type 'new (width?: number | undefined, height?: number | undefined) => HTMLImageElement' is not a valid JSX element type.
+    Type 'new (width?: number | undefined, height?: number | undefined) => HTMLImageElement' is not assignable to type 'new (props: any, context: any) => Component<any, any, any>'.
+      Type 'HTMLImageElement' is missing the following properties from type 'Component<any, any, any>': context, setState, forceUpdate, render, and 2 more.
+src/app/product/[slug]/page.tsx(116,28): error TS7006: Parameter '_img' implicitly has an 'any' type.
+src/app/product/[slug]/page.tsx(116,34): error TS7006: Parameter 'i' implicitly has an 'any' type.
+src/app/product/[slug]/page.tsx(123,28): error TS7006: Parameter 'img' implicitly has an 'any' type.
+src/app/product/[slug]/page.tsx(123,33): error TS7006: Parameter 'i' implicitly has an 'any' type.
+src/app/product/[slug]/page.tsx(125,19): error TS2607: JSX element class does not support attributes because it does not have a 'props' property.
+src/app/product/[slug]/page.tsx(125,20): error TS2786: 'Image' cannot be used as a JSX component.
+  Its type 'new (width?: number | undefined, height?: number | undefined) => HTMLImageElement' is not a valid JSX element type.
+    Type 'new (width?: number | undefined, height?: number | undefined) => HTMLImageElement' is not assignable to type 'new (props: any, context: any) => Component<any, any, any>'.
+      Type 'HTMLImageElement' is missing the following properties from type 'Component<any, any, any>': context, setState, forceUpdate, render, and 2 more.
+src/app/register/page.tsx(77,15): error TS2322: Type '{ type: "text"; placeholder: string; value: string; onChange: (e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => void; leftIcon: Element; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<HTMLInputElement>'.
+  Property 'leftIcon' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<HTMLInputElement>'.
+src/app/register/page.tsx(87,15): error TS2322: Type '{ type: "email"; placeholder: string; value: string; onChange: (e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => void; leftIcon: Element; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<HTMLInputElement>'.
+  Property 'leftIcon' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<HTMLInputElement>'.
+src/app/register/page.tsx(97,15): error TS2322: Type '{ type: "tel"; placeholder: string; value: string; onChange: (e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => void; leftIcon: Element; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<HTMLInputElement>'.
+  Property 'leftIcon' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<HTMLInputElement>'.
+src/app/register/page.tsx(107,15): error TS2322: Type '{ type: "password"; placeholder: string; value: string; onChange: (e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => void; leftIcon: Element; }' is not assignable to type 'IntrinsicAttributes & InputProps & RefAttributes<HTMLInputElement>'.
+  Property 'leftIcon' does not exist on type 'IntrinsicAttributes & InputProps & RefAttributes<HTMLInputElement>'.
+src/app/register/page.tsx(110,33): error TS2322: Type '{ children: string; type: "submit"; loading: boolean; className: string; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<HTMLButtonElement>'.
+  Property 'loading' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<HTMLButtonElement>'.
+src/components/ui/button.tsx(18,9): error TS2322: Type 'ForwardedRef<HTMLButtonElement>' is not assignable to type '((((instance: HTMLButtonElement | null) => void | (() => VoidOrUndefinedOnly)) | RefObject<HTMLButtonElement | null>) & (((instance: FragmentInstance | null) => void | (() => VoidOrUndefinedOnly)) | RefObject<...>)) | null | undefined'.
+  Type 'RefObject<HTMLButtonElement | null>' is not assignable to type '((((instance: HTMLButtonElement | null) => void | (() => VoidOrUndefinedOnly)) | RefObject<HTMLButtonElement | null>) & (((instance: FragmentInstance | null) => void | (() => VoidOrUndefinedOnly)) | RefObject<...>)) | null | undefined'.
+    Type 'RefObject<HTMLButtonElement | null>' is not assignable to type 'RefObject<HTMLButtonElement | null> & RefObject<FragmentInstance | null>'.
+      Type 'RefObject<HTMLButtonElement | null>' is not assignable to type 'RefObject<FragmentInstance | null>'.
+        Type 'HTMLButtonElement | null' is not assignable to type 'FragmentInstance | null'.
+          Type 'HTMLButtonElement' is missing the following properties from type 'FragmentInstance': focusLast, observeUsing, unobserveUsing
+src/components/ui/toast.tsx(97,46): error TS2558: Expected 2 type arguments, but got 1.
+src/components/ui/toast.tsx(99,68): error TS2339: Property 'toasts' does not exist on type 'Reducer<{ toasts: ToasterToast[]; }, any>'.
+src/components/ui/toast.tsx(100,53): error TS2339: Property 'toasts' does not exist on type 'Reducer<{ toasts: ToasterToast[]; }, any>'.
+src/components/ui/toast.tsx(100,65): error TS7006: Parameter 't' implicitly has an 'any' type.
+src/components/ui/toast.tsx(108,48): error TS2339: Property 'toasts' does not exist on type 'Reducer<{ toasts: ToasterToast[]; }, any>'.
+src/components/ui/toast.tsx(108,64): error TS7006: Parameter 't' implicitly has an 'any' type.
+src/components/ui/toast.tsx(109,34): error TS2339: Property 'toasts' does not exist on type 'Reducer<{ toasts: ToasterToast[]; }, any>'.
+src/components/ui/toast.tsx(109,46): error TS7006: Parameter 't' implicitly has an 'any' type.
+src/components/ui/toast.tsx(111,107): error TS2339: Property 'toasts' does not exist on type 'Reducer<{ toasts: ToasterToast[]; }, any>'.
+src/components/ui/toast.tsx(111,122): error TS7006: Parameter 't' implicitly has an 'any' type.
+src/components/ui/toast.tsx(124,42): error TS2322: Type '{ children: (ReactNode | Element)[]; label?: string | undefined; swipeDirection?: SwipeDirection | undefined; swipeThreshold?: number | undefined; announcerContainer?: Element | ... 1 more ... | undefined; duration: number | undefined; onToastChange: ActionDispatch<...>; }' is not assignable to type 'IntrinsicAttributes & ToastProviderProps'.
+  Property 'onToastChange' does not exist on type 'IntrinsicAttributes & ToastProviderProps'.
+src/components/ui/toast.tsx(126,18): error TS2339: Property 'toasts' does not exist on type 'Reducer<{ toasts: ToasterToast[]; }, any>'.
+src/components/ui/toast.tsx(126,30): error TS7006: Parameter 't' implicitly has an 'any' type.
+src/hooks/use-cart.ts(122,7): error TS2349: This expression is not callable.
+  Type 'ToastContextType' has no call signatures.
+src/hooks/use-cart.ts(124,7): error TS2349: This expression is not callable.
+  Type 'ToastContextType' has no call signatures.
+src/hooks/use-cart.ts(143,7): error TS2349: This expression is not callable.
+  Type 'ToastContextType' has no call signatures.
+src/hooks/use-cart.ts(145,7): error TS2349: This expression is not callable.
+  Type 'ToastContextType' has no call signatures.
+src/hooks/use-wishlist.ts(41,7): error TS2349: This expression is not callable.
+  Type 'ToastContextType' has no call signatures.
+src/hooks/use-wishlist.ts(45,9): error TS2349: This expression is not callable.
+  Type 'ToastContextType' has no call signatures.
+src/hooks/use-wishlist.ts(49,9): error TS2349: This expression is not callable.
+  Type 'ToastContextType' has no call signatures.
+src/lib/queries.ts(102,28): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, but 'descending' does not exist in type '{ ascending?: boolean | undefined; nullsFirst?: boolean | undefined; foreignTable?: string | undefined; }'. Did you mean to write 'ascending'?
+Failed to type check.
+

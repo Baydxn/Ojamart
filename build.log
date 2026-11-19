@@ -1,0 +1,139 @@
+
+> ojamart@1.0.0 build
+> next build
+
+▲ Next.js 16.4.6 (Turbopack)
+✓ Running next.config.ts took 5.0s
+- Cache Components enabled
+- Partial Prefetching enabled
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Finished writing to filesystem cache in 21.5s
+
+> Build error occurred
+Error: Turbopack build failed with 5 errors:
+./src/app/orders/[id]/page.tsx:62:27
+Error: Expected '</', got '['
+  [90m60 |[0m             <p className=[32m"text-xs text-oj-gray-800 uppercase tracking-wider font-semibold ...[0m
+  [90m61 |[0m             <div className=[32m"flex items-center gap-2"[0m>
+[31m[1m>[0m [90m62 |[0m               <[33mSTATUS_ICON[0m[order.status] ?? <[33mClock[0m className=[32m"w-4 h-4"[0m /> />
+  [90m   |[0m                           [31m[1m^[0m
+  [90m63 |[0m               <span className=[32m"font-medium text-oj-black capitalize"[0m>{[33mSTATUS_LABEL[0m[order.s...
+  [90m64 |[0m             </div>
+  [90m65 |[0m           </div>
+
+Parsing ecmascript source code failed
+
+
+./src/hooks/use-cart.ts:191:32
+Error: Expected '>', got 'ident'
+  [90m189 |[0m   };
+  [90m190 |[0m
+[31m[1m>[0m [90m191 |[0m   [36mreturn[0m <[33mCartContext[0m.[33mProvider[0m value={value}>{children}</[33mCartContext[0m.[33mProvider[0m>;
+  [90m    |[0m                                [31m[1m^^^^^[0m
+  [90m192 |[0m }
+  [90m193 |[0m
+  [90m194 |[0m [36mexport[0m [36mfunction[0m useCart() {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/hooks/use-cart.ts [Client Component Browser]
+    ./src/app/product/[slug]/page.tsx [Client Component Browser]
+    ./src/app/product/[slug]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/hooks/use-cart.ts [Client Component SSR]
+    ./src/app/product/[slug]/page.tsx [Client Component SSR]
+    ./src/app/product/[slug]/page.tsx [Server Component]
+
+
+./src/hooks/use-wishlist.ts:57:31
+Error: Expected '>', got 'ident'
+  [90m55 |[0m
+  [90m56 |[0m   [36mreturn[0m (
+[31m[1m>[0m [90m57 |[0m     <[33mWishlistContext[0m.[33mProvider[0m value={{ productIds, isLoaded, toggle, has }}>
+  [90m   |[0m                               [31m[1m^^^^^[0m
+  [90m58 |[0m       {children}
+  [90m59 |[0m     </[33mWishlistContext[0m.[33mProvider[0m>
+  [90m60 |[0m   );
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/hooks/use-wishlist.ts [Client Component Browser]
+    ./src/components/products/product-card.tsx [Client Component Browser]
+    ./src/components/products/product-card.tsx [Server Component]
+    ./src/app/category/[slug]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/hooks/use-wishlist.ts [Client Component SSR]
+    ./src/components/products/product-card.tsx [Client Component SSR]
+    ./src/components/products/product-card.tsx [Server Component]
+    ./src/app/category/[slug]/page.tsx [Server Component]
+
+
+./src/lib/supabase-server.ts:4:23
+Error: the name `createServerClient` is defined multiple times
+  [90m2 |[0m [36mimport[0m { cookies } [36mfrom[0m [32m"next/headers"[0m;
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mexport[0m [36masync[0m [36mfunction[0m createServerClient() {
+  [90m  |[0m                       [31m[1m^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m   [36mconst[0m cookieStore = [36mawait[0m cookies();
+  [90m6 |[0m   [36mreturn[0m createServerClient(
+  [90m7 |[0m     process.env.[33mNEXT_PUBLIC_SUPABASE_URL[0m!,
+
+Ecmascript file had an error
+
+Import traces:
+  #1 [App Route]:
+    ./src/lib/supabase-server.ts
+    ./src/app/api/products/[slug]/route.ts
+
+  #2 [Server Component]:
+    ./src/lib/supabase-server.ts
+    ./src/actions/auth.ts
+
+  #3 [Server Component]:
+    ./src/lib/supabase-server.ts
+    ./src/lib/queries.ts
+    ./src/app/search/page.tsx
+
+
+./src/components/ui/toast.tsx:4:1
+Error: Module not found: Can't resolve '@radix-ui/react-toast'
+  [90m2 |[0m
+  [90m3 |[0m [36mimport[0m * [36mas[0m [33mReact[0m [36mfrom[0m [32m"react"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m * [36mas[0m [33mToastPrimitives[0m [36mfrom[0m [32m"@radix-ui/react-toast"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m { cn } [36mfrom[0m [32m"@/lib/utils"[0m;
+  [90m6 |[0m
+  [90m7 |[0m [36mconst[0m [33mToastProvider[0m = [33mToastPrimitives[0m.[33mProvider[0m;
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/toast.tsx [Client Component Browser]
+    ./src/hooks/use-toast.ts [Client Component Browser]
+    ./src/app/login/page.tsx [Client Component Browser]
+    ./src/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/toast.tsx [Client Component SSR]
+    ./src/hooks/use-toast.ts [Client Component SSR]
+    ./src/app/login/page.tsx [Client Component SSR]
+    ./src/app/login/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
