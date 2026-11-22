@@ -10,8 +10,8 @@ export interface ButtonProps
   asChild?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps, HTMLButtonElement>(
+  ({ className, variant = "default", size = "default", asChild = false, ...props }, ref: React.Ref<HTMLButtonElement>) => {
     const Comp = asChild ? React.Fragment : "button";
     return (
       <Comp

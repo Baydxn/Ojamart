@@ -93,7 +93,8 @@ const TOAST_LIMIT = 5;
 const TOAST_REMOVE_DELAY = 1000000;
 let count = 0;
 function genId() { count = (count + 1) % Number.MAX_SAFE_INTEGER; return count.toString(); }
-const timeoutMap = new Map<string, ReturnType<typeof setTimeout>>();
+type TimeoutId = ReturnType<typeof setTimeout>;
+const timeoutMap = new Map<string, TimeoutId>();
 
 function toastReducer(state: { toasts: ToasterToast[] }, action: ToastAction) {
   switch (action.type) {
