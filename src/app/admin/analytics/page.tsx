@@ -14,8 +14,8 @@ export default async function AnalyticsPage() {
   today.setHours(0, 0, 0, 0);
   const todaySales = orders
     .filter((o: any) => new Date(o.created_at) >= today)
-    .reduce((sum, o) => sum + (o.total || 0), 0);
-  const totalSales = orders.reduce((sum, o) => sum + (o.total || 0), 0);
+    .reduce((sum: number, o: any) => sum + (o.total || 0), 0);
+  const totalSales = orders.reduce((sum: number, o: any) => sum + (o.total || 0), 0);
 
   return (
     <div className="p-6">

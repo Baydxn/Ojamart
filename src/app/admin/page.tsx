@@ -14,7 +14,7 @@ export default async function AdminDashboard() {
     supabase.from("profiles").select("id", { count: "exact" }).eq("role", "customer"),
   ]);
   const orderCount = o.count || 0;
-  const revenue = (r.data || []).reduce((s, x) => s + (x.total || 0), 0);
+  const revenue = (r.data || []).reduce((s: number, x: any) => s + (x.total || 0), 0);
   const productCount = p.count || 0;
   const customerCount = c.count || 0;
 

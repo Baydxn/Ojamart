@@ -55,7 +55,7 @@ export default async function AccountPage() {
               <p className="text-sm text-oj-gray-800">No saved addresses.</p>
             ) : (
               <div className="space-y-3">
-                {addresses.map((addr) => (
+                {addresses.map((addr: any) => (
                   <div key={addr.id} className="p-3 rounded-lg border border-oj-border bg-oj-gray-50">
                     <p className="text-sm font-medium text-oj-black">{addr.fullName}</p>
                     <p className="text-xs text-oj-gray-800">{addr.addressLine}, {addr.city}, {addr.state}</p>
@@ -81,7 +81,7 @@ export default async function AccountPage() {
               <p className="text-sm text-oj-gray-800">No recent orders.</p>
             ) : (
               <div className="space-y-3">
-                {orders.slice(0, 3).map((order) => (
+                {orders.slice(0, 3).map((order: any) => (
                   <div key={order.id} className="p-3 rounded-lg border border-oj-border bg-oj-gray-50">
                     <p className="text-sm font-medium text-oj-black">Order #{order.orderNumber}</p>
                     <p className="text-xs text-oj-gray-800">{formatPrice(order.total)}</p>

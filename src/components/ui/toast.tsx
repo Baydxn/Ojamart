@@ -90,34 +90,32 @@ const ToastDescription = React.forwardRef<
 ));
 
 const TOAST_LIMIT = 5;
-const TOAST_REMOVE_DELAY = 1000000;
 let count = 0;
 function genId() { count = (count + 1) % Number.MAX_SAFE_INTEGER; return count.toString(); }
-type TimeoutId = ReturnType<typeof setTimeout>;
-const timeoutMap = new Map<string, TimeoutId>();
 
 function toastReducer(state: { toasts: ToasterToast[] }, action: ToastAction) {
   switch (action.type) {
-    case "ADD_TOAST": return { ...state, toasts: [action.toast, ...state.toasts].slice(0, TOAST_LIMIT) };
-    case "UPDATE_TOAST": return { ...state, toasts: state.toasts.map((t) => t.id === action.toast.id ? { ...t, ...action.toast } : t) };
-    case "DISMISS_TOAST": {
-      const { toastId } = action;
-      const schedule = (id: string) => {
-        if (timeoutMap.has(id)) return;
-        const timeout = setTimeout(() => { timeoutMap.delete(id); dispatch({ type: "REMOVE_TOAST", toastId: id }); }, TOAST_REMOVE_DELAY);
-        timeoutMap.set(id, timeout);
+    case "ADD_TOAST":
+      return { ...state, toasts: [action.toast, ...state.toasts].slice(0, TOAST_LIMIT) };
+    case "UPDATE_TOAST":
+      return { ...state, toasts: state.toasts.map((t) => (t.id === action.toast.id ? { ...t, ...action.toast } : t)) };
+    case "DISMISS_TOAST":
+      return {
+        ...state,
+        toasts: state.toasts.map((t) => (t.id === action.toastId || action.toastId === undefined ? { ...t, open: false } : t)),
       };
-      if (toastId) schedule(toastId); else state.toasts.forEach((t) => schedule(t.id));
-      return { ...state, toasts: state.toasts.map((t) => (t.id === toastId || toastId === undefined ? { ...t, open: false } : t)) };
-    }
-    case "REMOVE_TOAST": return action.toastId === undefined ? { ...state, toasts: [] } : { ...state, toasts: state.toasts.filter((t) => t.id !== action.toastId) };
-    default: return state;
+    case "REMOVE_TOAST":
+      return action.toastId === undefined
+        ? { ...state, toasts: [] }
+        : { ...state, toasts: state.toasts.filter((t) => t.id !== action.toastId) };
+    default:
+      return state;
   }
 }
 
-export function ToastProviderComponent({
+function ToastProviderComponent({
   children,
-  duration,
+  duration = 5000,
   ...props
 }: { children: React.ReactNode; duration?: number } & React.ComponentProps<typeof ToastProvider>) {
   const [state, dispatch] = React.useReducer(toastReducer, { toasts: [] });
@@ -125,8 +123,20 @@ export function ToastProviderComponent({
   const toast = ({ ...content }: ToastContent) => {
     const id = genId();
     dispatch({ type: "ADD_TOAST", toast: { id, duration, ...content } as ToasterToast });
+    setTimeout(() => {
+      dispatch({ type: "DISMISS_TOAST", toastId: id });
+      setTimeout(() => {
+        dispatch({ type: "REMOVE_TOAST", toastId: id });
+      }, 500);
+    }, duration);
   };
-  const dismiss = (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId });
+
+  const dismiss = (toastId?: string) => {
+    dispatch({ type: "DISMISS_TOAST", toastId });
+    setTimeout(() => {
+      dispatch({ type: "REMOVE_TOAST", toastId });
+    }, 500);
+  };
 
   return (
     <ToastContext.Provider value={{ toast, dismiss }}>
@@ -153,4 +163,13 @@ export function useToast() {
   return React.useContext(ToastContext);
 }
 
-export { ToastViewport, Toast, ToastTitle, ToastDescription, ToastAction, ToastClose };
+export {
+  ToastProviderComponent as ToastProvider,
+  ToastProviderComponent,
+  ToastViewport,
+  Toast,
+  ToastTitle,
+  ToastDescription,
+  ToastAction,
+  ToastClose,
+};

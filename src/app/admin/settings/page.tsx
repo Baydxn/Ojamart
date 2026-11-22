@@ -60,7 +60,7 @@ export default function SettingsPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-oj-black">Country</label>
-                    <Input value={formData.store_country || formData.country} onChange={(e) => setFormData({ ...formData, country: e.target.value })} placeholder="Nigeria" />
+                    <Input value={formData.country} onChange={(e) => setFormData({ ...formData, country: e.target.value })} placeholder="Nigeria" />
                   </div>
                 </div>
                 <div className="space-y-2">

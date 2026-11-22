@@ -2,20 +2,22 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "destructive" | "outline" | "ghost" | "link";
   size?: "default" | "sm" | "lg";
   asChild?: boolean;
+  loading?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps, HTMLButtonElement>(
-  ({ className, variant = "default", size = "default", asChild = false, ...props }, ref: React.Ref<HTMLButtonElement>) => {
-    const Comp = asChild ? React.Fragment : "button";
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant = "default", size = "default", asChild = false, loading = false, disabled, children, ...props }, ref) => {
     return (
-      <Comp
+      <button
         ref={ref}
+        disabled={disabled || loading}
         className={cn(
           "inline-flex items-center justify-center rounded-sm text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-oj-red focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
           {
@@ -37,7 +39,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps, HTMLButtonElemen
           className,
         )}
         {...props}
-      />
+      >
+        {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+        {children}
+      </button>
     );
   },
 );

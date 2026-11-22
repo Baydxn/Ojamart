@@ -3,8 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { CartProvider } from "@/contexts/CartProvider";
 import { ToastProvider } from "@/contexts/ToastProvider";
-import { TopNav } from "@/components/layout/top-nav";
-import { BottomNav } from "@/components/layout/bottom-nav";
+import { StorefrontShell } from "@/components/layout/storefront-shell";
 
 export const metadata: Metadata = {
   title: "Ojamart – Premium E-Commerce Storefront",
@@ -30,15 +29,7 @@ export default function RootLayout({
         <CartProvider>
           <ToastProvider>
             <Toaster position="bottom-right" />
-            <div className="relative z-0">
-              <TopNav />
-              <main
-                className="relative z-0 w-full pt-20 md:pt-18 pb-24 overflow-x-clip"
-              >
-                {children}
-              </main>
-              <BottomNav />
-            </div>
+            <StorefrontShell>{children}</StorefrontShell>
           </ToastProvider>
         </CartProvider>
       </body>

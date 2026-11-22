@@ -70,7 +70,7 @@ export async function verifyPaymentAction(sessionId: string) {
     return { ok: false, reason: "Cart is empty" };
   }
 
-  const subtotal = cartItems.reduce((sum, i) => sum + (i.products?.price || 0) * i.quantity, 0);
+  const subtotal = cartItems.reduce((sum: number, i: any) => sum + (i.products?.price || 0) * i.quantity, 0);
   const shippingFee = 0; // shipping already captured as a line item in Stripe; keep order shipping 0 here or pass in
   const total = subtotal + shippingFee;
 
@@ -94,7 +94,7 @@ export async function verifyPaymentAction(sessionId: string) {
   if (orderError) throw orderError;
 
   await supabase.from("order_items").insert(
-    cartItems.map((i) => ({
+    cartItems.map((i: any) => ({
       order_id: order.id,
       product_id: i.product_id,
       product_name: i.products?.name || "Product",

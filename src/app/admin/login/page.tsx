@@ -13,14 +13,15 @@ export default function AdminLoginPage() {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = async (e: FormDataEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    const email = e.currentTarget.elements.get("email") as HTMLInputElement;
-    const password = e.currentTarget.elements.get("password") as HTMLInputElement;
+    const formData = new FormData(e.currentTarget);
+    const email = (formData.get("email") as string) || "";
+    const password = (formData.get("password") as string) || "";
 
     try {
-      await signIn(email.value, password.value);
+      await signIn(email, password);
       toast({ title: "Welcome back", description: "Signed in successfully." });
       window.location.href = "/admin";
     } catch (err: any) {
@@ -48,19 +49,25 @@ export default function AdminLoginPage() {
               <Input type="email" name="email" placeholder="admin@ojamart.com" required className="mt-1" />
             </div>
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <label className="block text-sm font-medium text-oj-black">Password</label>
-                <a href="#" className="text-xs text-oj-red hover:text-red-800">Forgot password?</a>
-              </div>
+              <label className="block text-sm font-medium text-oj-black">Password</label>
               <Input type="password" name="password" placeholder="••••••••" required className="mt-1" />
             </div>
-            <Button type="submit" className="w-full bg-oj-red text-white font-semibold py-3 hover:bg-red-800 transition-colors disabled:opacity-70" disabled={loading}>
-              {loading ? <span className="flex items-center gap-2"><span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" /> <span>Signing in...</span></span> : <span>Sign in <ArrowRight className="w-4 h-4 ml-1" /></span>}
+            <Button type="submit" disabled={loading} className="w-full py-3 flex items-center justify-center gap-2">
+              {loading ? (
+                <span>Signing in...</span>
+              ) : (
+                <>
+                  <span>Sign In to Admin</span>
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
             </Button>
           </form>
 
-          <div className="text-center text-sm text-oj-gray-800 mt-6">
-            <Link href="/" className="text-oj-red font-medium hover:underline">← Back to store</Link>
+          <div className="text-center pt-4 border-t border-oj-border">
+            <Link href="/" className="text-sm text-oj-gray-800 hover:text-oj-black">
+              Return to storefront
+            </Link>
           </div>
         </div>
       </div>

@@ -44,7 +44,7 @@ export default async function GrowthPage() {
           </CardHeader>
           <CardContent>
             <ul className="space-y-2 text-sm">
-              {(events || []).map((e) => (
+              {(events || []).map((e: any) => (
                 <li key={e.id} className="flex justify-between py-1 border-b border-oj-border/50 last:border-0">
                   <span className="text-oj-gray-800">{e.event_name}</span>
                   <span className="text-xs text-oj-gray-500">{new Date(e.created_at).toLocaleString()}</span>
